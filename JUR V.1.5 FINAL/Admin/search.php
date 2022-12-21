@@ -2,18 +2,18 @@
 
     include('config.php');
 
-    $column = array('first_name', 'gender', 'address', 'city', 'postalcode', 'country');
+    $column = array('nome', 'sobrenome', 'cpf', 'caso');
 
     $query = "SELECT * FROM students ";
 
-    if(isset($_POST['filter_gender'], $_POST['filter_country']) && $_POST['filter_gender'] != '' && $_POST['filter_country'] != '')
+    if(isset($_POST['filter_sobrenome']) && $_POST['filter_sobrenome'])
     {
-       $query .= 'WHERE gender = "'.$_POST['filter_gender'].'" AND country = "'.$_POST['filter_country'].'" ';
+       $query .= 'WHERE sobrenome = "'.$_POST['filter_sobrenome'];
     }
 
     if(isset($_POST['order']))
     {
-       $query .= 'ORDER BY '.$column[$_POST['order']['0']['column']].' '.$_POST['order']['0']['dir'].' ';
+       $query .= 'ORDER BY '.$column[$_POST['order']['0']['column']].$_POST['order']['0']['dir'];
 
     }else {
        $query .= 'ORDER BY id DESC ';
@@ -38,18 +38,16 @@
     foreach($result as $row)
     {
         $sub_array = array();
-        $sub_array[] = $row['first_name'];
-        $sub_array[] = $row['gender'];
-        $sub_array[] = $row['address'];
-        $sub_array[] = $row['city'];
-        $sub_array[] = $row['postalcode'];
-        $sub_array[] = $row['country'];
+        $sub_array[] = $row['nome'];
+        $sub_array[] = $row['sobrenome'];
+        $sub_array[] = $row['cpf'];
+        $sub_array[] = $row['caso'];
         $data[] = $sub_array;
     }
 
     function count_all_data($connect)
     {
-        $query = "SELECT * FROM students";
+        $query = "SELECT * FROM jus_adv";
         $statement = $connect->prepare($query);
         $statement->execute();
         return $statement->rowCount();
