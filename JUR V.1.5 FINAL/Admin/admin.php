@@ -32,6 +32,33 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
         table tr td:last-child {
             width: 120px;
         }
+
+        @media (max-width: 767px) {
+
+            /* styles for screens with a width of 767px or smaller */
+            .wrapper {
+                width: 100%;
+                /* make the wrapper take up the full width of the screen */
+            }
+        }
+
+        @media (min-width: 768px) and (max-width: 991px) {
+
+            /* styles for screens with a width between 768px and 991px */
+            .wrapper {
+                width: 90%;
+                /* make the wrapper take up 90% of the screen */
+            }
+        }
+
+        @media (min-width: 992px) {
+
+            /* styles for screens with a width of 992px or larger */
+            .wrapper {
+                width: 1300px;
+                /* keep the original width of the wrapper */
+            }
+        }
     </style>
 
 
@@ -50,8 +77,8 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                         <a href="create.php" class="btn btn-success pull-right"><i class="fa fa-plus"></i> Adicionar
                             Advogado</a>
                         <div class="search-box">
-                            <input type="text" autocomplete="off" class="form-control  my-2" placeholder="Mousemove search"
-                                id="search-input" onload="filterTable()" />
+                            <input type="text" autocomplete="off" class="form-control  my-2"
+                                placeholder="Mousemove search" id="search-input" onload="filterTable()" />
                         </div>
                         <?php
                         // incluir config.php
